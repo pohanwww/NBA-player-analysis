@@ -8,6 +8,7 @@ data size:
 - 16-17 season: 29x500
 - 17-18 season: 29x540
 - 18-19 season: 29x530
+
 (source:https://stats.nba.com/)
 
 ## Method
