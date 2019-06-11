@@ -19,11 +19,11 @@ from sklearn import ensemble
 
 k = 3
 def preprocess_data():
-    data_1617 = pd.read_csv('nba_player_1617.csv')
+    data_1617 = pd.read_csv('data/nba_player_1617.csv')
     data_1617.insert(0,'SEASON','1617')
-    data_1718 = pd.read_csv('nba_player_1718.csv')
+    data_1718 = pd.read_csv('data/nba_player_1718.csv')
     data_1718.insert(0,'SEASON','1718')
-    data_1819 = pd.read_csv('nba_player_1819.csv')
+    data_1819 = pd.read_csv('data/nba_player_1819.csv')
     data_1819.insert(0,'SEASON','1819')
     data = pd.concat([data_1617,data_1718,data_1819]) #1570 row
     data = data.drop(columns=['AGE','GP','W','L','MIN','FGM','FGA','3PM','3PA','3P%','FTM','FTA','FT%','OREB','DREB','STL','BLK','PF','FP','DD2','TD3','+/-'])
@@ -105,26 +105,26 @@ def main():
         data.append(item[3:])
     data_array = np.array(data)
 
-    # #SOM
-    # som = MiniSom(3 , 3, len(data_array[0]), sigma=0.3, learning_rate=0.2)
-    # som.random_weights_init(data_array)
-    # starting_weights = som.get_weights().copy()
-    # # print('weight:',starting_weights)
-    # som.train_random(data_array, len(data)*180, verbose=True)   #iteration=1570*180=282600
-    # qnt = som.quantization(data_array)
-    # # print('qnt:',qnt)
-    # # map = som.distance_map(data)
-    # result1 = som.activation_response(data_array)
-    # print('result1 are: \n', result1)
-    # print(som.get_weights())
+    #SOM
+    som = MiniSom(3 , 3, len(data_array[0]), sigma=0.3, learning_rate=0.2)
+    som.random_weights_init(data_array)
+    starting_weights = som.get_weights().copy()
+    # print('weight:',starting_weights)
+    som.train_random(data_array, len(data)*180, verbose=True)   #iteration=1570*180=282600
+    qnt = som.quantization(data_array)
+    # print('qnt:',qnt)
+    # map = som.distance_map(data)
+    result1 = som.activation_response(data_array)
+    print('result1 are: \n', result1)
+    print(som.get_weights())
 
-    # #K Means
-    # kmeans = KMeans(n_clusters=k, init = 'random', n_init = 1)
-    # kmeans = kmeans.fit(data)
+    #K Means
+    kmeans = KMeans(n_clusters=k, init = 'random', n_init = 1)
+    kmeans = kmeans.fit(data)
     # with open('kmeans.p', 'wb') as outfile:
     #     pickle.dump(kmeans, outfile)
-    with open('kmeans.p', 'rb') as outfile:
-        kmeans = pickle.load(outfile)
+    # with open('kmeans.p', 'rb') as outfile:
+    #     kmeans = pickle.load(outfile)
 
     #label the data
     labels = kmeans.predict(data)
