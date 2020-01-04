@@ -5,9 +5,9 @@ There are NBA player datas of 3 seasons. (16-17 season, 17-18 season, 18-19 seas
 Winning rate of each team in 16-19 seasons.
 
 data size:
-- 16-17 season: 29x500
-- 17-18 season: 29x540
-- 18-19 season: 29x530
+- 16-17 season: 29 features x500
+- 17-18 season: 29 features x540
+- 18-19 season: 29 features x530
 
 (source:https://stats.nba.com/)
 
